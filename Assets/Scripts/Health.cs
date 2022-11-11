@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     private float _minHealth;
     private float _damage;
     private float _treat;
-    private Coroutine _moveHealthBar;
+    private Coroutine _moveHealth;
 
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private TMP_Text _text;
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
         _healthSlider.minValue = _minHealth;
         _healthSlider.value = _currentHealth;
 
-        _moveHealthBar = StartCoroutine(MoveBar(_maxHealth));
+        _moveHealth = StartCoroutine(MoveBar(_maxHealth));
     }
 
     public void IncreaseHealth()
@@ -44,14 +44,12 @@ public class Health : MonoBehaviour
             targetHealt = _maxHealth;
         }
 
-        if (_moveHealthBar != null)
+        if (_moveHealth != null)
         {
-             StopCoroutine(_moveHealthBar);
+             StopCoroutine(_moveHealth);
         }
 
-        _moveHealthBar = StartCoroutine(MoveBar(targetHealt));
-
-        ChangeText(_currentHealth);
+        _moveHealth = StartCoroutine(MoveBar(targetHealt));
     }
 
     public void ReduceHealth()
@@ -63,14 +61,12 @@ public class Health : MonoBehaviour
             targetHealt = _minHealth;
         }
 
-        if (_moveHealthBar != null && targetHealt != _currentHealth)
+        if (_moveHealth != null && targetHealt != _currentHealth)
         {
-            StopCoroutine(_moveHealthBar);
+            StopCoroutine(_moveHealth);
         }
 
-        _moveHealthBar = StartCoroutine(MoveBar(targetHealt));
-
-        ChangeText(_currentHealth);
+        _moveHealth = StartCoroutine(MoveBar(targetHealt));
     }
 
     private void ChangeText(float health)
