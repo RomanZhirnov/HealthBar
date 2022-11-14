@@ -866,13 +866,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1933698173}
         m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: ReduceHealth
-        m_Mode: 1
+        m_MethodName: Damage
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1061,6 +1061,7 @@ GameObject:
   - component: {fileID: 1378912658}
   - component: {fileID: 1378912657}
   - component: {fileID: 1378912656}
+  - component: {fileID: 1378912659}
   m_Layer: 5
   m_Name: Health Bar Canvas
   m_TagString: Untagged
@@ -1150,6 +1151,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1378912659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378912654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67049d96cbe145b44a20929da1f4f783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 695423659}
+  _gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.25845075, b: 0, a: 1}
+    key1: {r: 0.937199, g: 1, b: 0, a: 1}
+    key2: {r: 0.015686275, g: 0.5686275, b: 0.8196079, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 9709
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  _fill: {fileID: 1672905774}
+  _healthSlider: {fileID: 474005950}
+  _changingSpeed: 0.1
+  _health: {fileID: 1933698173}
 --- !u!1 &1514437130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,39 +1543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b92c1ed6dd7b84da519c0ef8c80949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthSlider: {fileID: 474005950}
-  _text: {fileID: 695423659}
-  _gradient:
-    serializedVersion: 2
-    key0: {r: 0.89019614, g: 0.19215688, b: 0.03137255, a: 1}
-    key1: {r: 0.937199, g: 1, b: 0, a: 1}
-    key2: {r: 0.015686275, g: 0.5686275, b: 0.8196079, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 16769
-    ctime1: 48766
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 1
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
-  _fill: {fileID: 1672905774}
-  _changingSpeed: 0.1
 --- !u!1 &1947284396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,7 +1708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Treat
+  m_text: Heal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1784,7 +1798,7 @@ GameObject:
   - component: {fileID: 2088776421}
   - component: {fileID: 2088776420}
   m_Layer: 5
-  m_Name: ' Button Treat'
+  m_Name: ' Button Heal'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1857,13 +1871,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1933698173}
         m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: IncreaseHealth
-        m_Mode: 1
+        m_MethodName: Heal
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

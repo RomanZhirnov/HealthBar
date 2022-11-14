@@ -1,88 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using System;
+using System.Collections;
 
 
 public class Health : MonoBehaviour
 {
-    private float _currentHealth;
-    private float _maxHealth;
-    private float _minHealth;
-    private float _damage;
-    private float _treat;
-    private Coroutine _moveHealth;
+    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _minHealth = 0f;
+    [SerializeField] private float _currentHealth = 50f;
+    [SerializeField] private float _rateOfChange = 0.01f;
 
-    [SerializeField] private Slider _healthSlider;
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private Gradient _gradient;
-    [SerializeField] private Image _fill;
-    [SerializeField] private float _changingSpeed = 0.1f;
+    private float _targetHealth;
+
+    public float MaxHealth => _maxHealth;
+    public float MinHealth => _minHealth;
+    public float CurrentHealth => _currentHealth;
 
     private void Start()
     {
-        _currentHealth = 50f;
-        _maxHealth = 100f;
-        _minHealth = 0f;
-        _damage = 10f;
-        _treat = 10f;
+        _targetHealth = _currentHealth;
+        StartCoroutine(SmoothÑhange());
+    }
+    public void Heal(float heal)
+    {
+        _targetHealth += heal;
 
-        _healthSlider.maxValue = _maxHealth;
-        _healthSlider.minValue = _minHealth;
-        _healthSlider.value = _currentHealth;
-
-        _moveHealth = StartCoroutine(MoveBar(_maxHealth));
+        if (_targetHealth > _maxHealth)
+        {
+            _targetHealth = _maxHealth;
+        }
     }
 
-    public void IncreaseHealth()
+    public void Damage(float damage)
     {
-        float targetHealt = _currentHealth + _treat;
+        _targetHealth -= damage;
 
-        if (targetHealt > _maxHealth)
+        if (_targetHealth < _minHealth)
         {
-            targetHealt = _maxHealth;
+            _targetHealth = _minHealth;
         }
-
-        if (_moveHealth != null)
-        {
-             StopCoroutine(_moveHealth);
-        }
-
-        _moveHealth = StartCoroutine(MoveBar(targetHealt));
     }
 
-    public void ReduceHealth()
+    private IEnumerator SmoothÑhange()
     {
-        float targetHealt = _currentHealth - _damage;
-
-        if (targetHealt < _minHealth)
+        while (true)
         {
-            targetHealt = _minHealth;
-        }
-
-        if (_moveHealth != null && targetHealt != _currentHealth)
-        {
-            StopCoroutine(_moveHealth);
-        }
-
-        _moveHealth = StartCoroutine(MoveBar(targetHealt));
-    }
-
-    private void ChangeText(float health)
-    {
-        int IntHealth = (int)health;
-        _text.text = IntHealth.ToString();
-    }
-
-    private IEnumerator MoveBar(float targetHealth)
-    {
-        while (_currentHealth != targetHealth)
-        {
-            _currentHealth = Mathf.MoveTowards(_currentHealth, targetHealth, _changingSpeed);
-            _healthSlider.value = _currentHealth;
-            _fill.color = _gradient.Evaluate(_healthSlider.normalizedValue);
-            ChangeText(_currentHealth);
+            _currentHealth = Mathf.MoveTowards(_currentHealth, _targetHealth, _rateOfChange);
             yield return null;
         }
     }
