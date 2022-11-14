@@ -5,8 +5,8 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _minHealth = 0f;
+    [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _currentHealth = 50f;
     [SerializeField] private float _rateOfChange = 0.01f;
 
@@ -20,6 +20,19 @@ public class Health : MonoBehaviour
     {
         _targetHealth = _currentHealth;
         StartCoroutine(SmoothÑhange());
+    }
+
+    private void OnValidate()
+    {
+        if (_minHealth >= _maxHealth)
+        {
+            _minHealth = _maxHealth - 1;
+        }
+
+        if (_currentHealth < _minHealth || _currentHealth > _maxHealth)
+        {
+            _currentHealth = (_maxHealth - _minHealth) / 2;
+        }
     }
     public void Heal(float heal)
     {
