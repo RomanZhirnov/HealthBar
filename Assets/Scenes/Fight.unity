@@ -456,7 +456,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.3
+  m_fontSize: 40.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1195,7 +1195,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _fill: {fileID: 1672905774}
   _healthSlider: {fileID: 474005950}
-  _changingSpeed: 0.1
   _health: {fileID: 1933698173}
 --- !u!1 &1514437130
 GameObject:
@@ -1543,6 +1542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b92c1ed6dd7b84da519c0ef8c80949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minHealth: 0
+  _maxHealth: 100
+  _currentHealth: 50
+  _rateOfChange: 0.01
 --- !u!1 &1947284396
 GameObject:
   m_ObjectHideFlags: 0
