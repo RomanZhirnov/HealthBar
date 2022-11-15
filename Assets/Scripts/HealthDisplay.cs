@@ -19,7 +19,6 @@ public class HealthDisplay : MonoBehaviour
     private float _targetHealth;
     private bool _isCorotineWork;
 
-
     private void OnEnable()
     {
         _health.OnHealthChange += ShowHealth;

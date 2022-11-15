@@ -37,6 +37,4 @@ public class Health : MonoBehaviour
         _currentHealth = Mathf.Clamp(_currentHealth, _minHealth, _maxHealth);
         OnHealthChange?.Invoke();
     }
-
-
 }
