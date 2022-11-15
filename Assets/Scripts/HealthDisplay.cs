@@ -17,7 +17,7 @@ public class HealthDisplay : MonoBehaviour
     private Coroutine _coroutine;
     private float _displedHealth;
     private float _targetHealth;
-
+    private bool _isCorotineWork;
 
 
     private void OnEnable()
@@ -42,12 +42,10 @@ public class HealthDisplay : MonoBehaviour
     {
         _targetHealth = _health.CurrentHealth;
 
-        if (_coroutine != null)
+        if (_isCorotineWork != true)
         {
-            StopCoroutine(Smooth—hange());
+            _coroutine = StartCoroutine(Smooth—hange());
         }
-
-        _coroutine = StartCoroutine(Smooth—hange());
     }
 
     private void ChangeText(float health)
@@ -58,6 +56,8 @@ public class HealthDisplay : MonoBehaviour
 
     private IEnumerator Smooth—hange()
     {
+        _isCorotineWork = true;
+
         while (_displedHealth != _targetHealth)
         {
             _displedHealth = Mathf.MoveTowards(_displedHealth, _targetHealth, _rateOfChange);
@@ -66,5 +66,7 @@ public class HealthDisplay : MonoBehaviour
             ChangeText(_displedHealth);
             yield return null;
         }
+
+        _isCorotineWork = false;
     }
 }
