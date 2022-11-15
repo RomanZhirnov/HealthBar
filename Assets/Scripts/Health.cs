@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-
 public class Health : MonoBehaviour
 {
     [SerializeField] private float _minHealth = 0f;

@@ -44,7 +44,7 @@ public class HealthDisplay : MonoBehaviour
 
         if (_isCorotineWork != true & _targetHealth != _displedHealth)
         {
-            _coroutine = StartCoroutine(Smooth—hange());
+            _coroutine = StartCoroutine(SmoothChange());
         }
     }
 
