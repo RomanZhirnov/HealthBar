@@ -42,7 +42,7 @@ public class HealthDisplay : MonoBehaviour
     {
         _targetHealth = _health.CurrentHealth;
 
-        if (_isCorotineWork != true)
+        if (_isCorotineWork != true & _targetHealth != _displedHealth)
         {
             _coroutine = StartCoroutine(Smooth—hange());
         }
