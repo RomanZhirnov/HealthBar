@@ -54,7 +54,7 @@ public class HealthDisplay : MonoBehaviour
         _text.text = IntHealth.ToString();
     }
 
-    private IEnumerator Smooth—hange()
+    private IEnumerator SmoothChange()
     {
         _isCorotineWork = true;
 

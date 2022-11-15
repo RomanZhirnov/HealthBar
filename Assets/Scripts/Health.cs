@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float _currentHealth = 50f;
 
     public event Action OnHealthChange;
+
     public float MaxHealth => _maxHealth;
     public float MinHealth => _minHealth;
     public float CurrentHealth => _currentHealth;
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour
 
         _currentHealth = Mathf.Clamp(_currentHealth, _minHealth, _maxHealth);
     }
+
     public void Heal(float heal)
     {
         _currentHealth += heal;
